@@ -28,7 +28,7 @@ curl -u "username:accesskey" -X POST "https://api.browserstack.com/app-automate/
 
 - Update the desired capability "app" with the App URL returned from the above API call.
 
-- To run android test, run `mvn test -P android`
+- To run android test Parallel, run `mvn test -P android`
 
 - To run ios tests, run `mvn test -P ios`
 
