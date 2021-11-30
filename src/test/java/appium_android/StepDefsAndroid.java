@@ -27,19 +27,29 @@ public class StepDefsAndroid {
     DesiredCapabilities caps;
     public AndroidDriver<AndroidElement> driver;
 
-    @Given("Open Application")
-    public void open_Application() throws MalformedURLException {
+    @Given("Open Application on device one")
+    public void open_Application_on_device_one() throws MalformedURLException  {
+    
+    caps = new DesiredCapabilities();
+    caps.setCapability("device", "Samsung Galaxy Note 20");
+    caps.setCapability("os_version", "10.0");
+    caps.setCapability("build", "cucumber-java-testng-browserstack");
+    caps.setCapability("name", "android_test_two");
+    caps.setCapability("app","bs://<app-hashid>");
+    driver = new AndroidDriver<AndroidElement>(new URL("http://"+USERNAME+":"+AUTOMATE_KEY+"@hub-cloud.browserstack.com/wd/hub"), caps);
+}
 
-        caps = new DesiredCapabilities();
-        caps.setCapability("device", "Samsung Galaxy S8 Plus");
-        caps.setCapability("os_version", "7.0");
-        caps.setCapability("build", "cucumber-java-testng-browserstack");
-        caps.setCapability("name", "single_android_test");
-        caps.setCapability("app","bs://ae210c1d04aa89db927c408f6d7da115303fba0d");
-        caps.setCapability("app","bs://<app-hashid>");
-        driver = new AndroidDriver<AndroidElement>(new URL("http://"+USERNAME+":"+AUTOMATE_KEY+"@hub-cloud.browserstack.com/wd/hub"), caps);
-    }
-
+@Given("Open Application on device two")
+public void open_Application_on_device_two() throws MalformedURLException  {
+ 
+    caps = new DesiredCapabilities();
+    caps.setCapability("device", "Google Pixel 3");
+    caps.setCapability("os_version", "9.0");
+    caps.setCapability("build", "cucumber-java-testng-browserstack");
+    caps.setCapability("name", "android_test_one");
+    caps.setCapability("app","bs://<app-hashid>");
+    driver = new AndroidDriver<AndroidElement>(new URL("http://"+USERNAME+":"+AUTOMATE_KEY+"@hub-cloud.browserstack.com/wd/hub"), caps);
+}
     @When("Search for BrowserStack")
     public void search_for_BrowserStack() throws InterruptedException {
         AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(
